@@ -50,27 +50,28 @@ Copyright 2009–2015 by Codility Limited. All Rights Reserved. Unauthorized cop
 
 int solution(NSMutableArray *A) 
 {
-    int _result = __INT_MAX__;
-    for (int i = 1; i < [A count]; i++)
+    int _sum = 0;
+    for (int i = 0; i < A.count; i++)
     {
-        int _sumLeft = 0;
-        int _sumRight = 0;
-        for (int j = 0; j < [A count]; j++)
-        {
-            int _v = [A[j] intValue];
-            
-            if (j < i)
-                _sumLeft += _v;
-            else
-                _sumRight += _v;
-        }
-        
-        int _sum = abs(_sumRight - _sumLeft);
-        if (_result > _sum)
-            _result = _sum;
+        _sum += [A[i] intValue];
     }
     
-    return _result;
+    int _sumLeft = 0;
+    int _sumRight = _sum;
+    int _rezult = __INT_MAX__;
+    
+    for (int i = 1; i < A.count; i++)
+    {
+        _sumLeft += [A[i-1] intValue];
+        _sumRight -= [A[i-1] intValue];
+        int _diff = abs(_sumLeft - _sumRight);
+        
+        if (_diff < _rezult)
+            _rezult = _diff;
+    }
+    
+    return _rezult;
 }
 
-//my result: https://codility.com/demo/results/demoF4VRC8-5G6/#task-0
+//my result 1: https://codility.com/demo/results/demoF4VRC8-5G6/ 50%
+//my result 2: https://codility.com/demo/results/demo8HAHBT-VWB/ 100%
