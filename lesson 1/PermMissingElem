@@ -36,4 +36,4 @@ int solution(NSMutableArray *A)
     return _missing;
 }
 
-//my result: https://codility.com/demo/results/demoDG8VKQ-RR3/
+//my result: https://codility.com/demo/results/demoDG8VKQ-RR3/ 100%
